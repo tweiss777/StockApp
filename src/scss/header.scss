@@ -1,0 +1,62 @@
+@import "./grid.scss";
+@import "./sizes.scss";
+
+.stock-header {
+    margin: 15px;
+    padding: 1rem 2rem;
+    justify-content: space-between;
+    box-shadow:0 1px 4px 1px rgba(0, 0, 0, 0.2);
+    @include row;
+
+    .stock-name {
+        margin-bottom: 0;
+        @include font-large;
+    }
+
+    .update-date {
+        margin-top: 0;
+        color: #a6a6a6;
+        @include font-small;
+    }
+
+    .current-price {
+        @include font-large;
+        margin-bottom: 0;
+    }
+
+    .change-container {
+        @include row;
+        margin-top: 0;
+        justify-content: space-between;
+
+        .change {
+            margin-top: 0;
+        }
+
+        .change-percent {
+            margin-top: 0;
+        }
+    }
+
+    .increase {
+        color: #00a80c;
+    }
+
+    .decrease {
+        color: #c40000;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .stock-header {
+        @include col;
+
+        .stock-name {
+            @include font-large;
+        }
+
+        .change-container {
+           @include font-medium; 
+        }
+    }
+}

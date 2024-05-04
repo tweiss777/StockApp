@@ -1,0 +1,19 @@
+@mixin col {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin row {
+    display: flex;
+    flex-direction: row;
+}
+
+
+.col{
+    @include col;
+}
+
+.row{
+    @include row;
+}
+

@@ -1,0 +1,9 @@
+@import './grid.scss';
+
+.btn-group{
+    @include row;
+    margin: 15px;
+    padding: 0;
+    gap: 20px;
+    justify-content: flex-start;
+}

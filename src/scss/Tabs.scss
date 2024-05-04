@@ -1,0 +1,15 @@
+@import './grid.scss';
+
+.active-tab{
+    margin: 15px;
+}
+
+
+.tabs{
+    @include row;
+    margin: 15px;
+    padding: 0;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
