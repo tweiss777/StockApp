@@ -27,34 +27,49 @@ export default function useStocksService() {
     init();
   }, []);
 
-    useEffect(() => {
-        switch (selectedRange) {
-            case Range.oneDay:
-                setCurrentOverviewRange(stockRanges.oneDay);
-                break;
-            case Range.oneWeek:
-                setCurrentOverviewRange(stockRanges.oneWeek);
-                break;
-            case Range.oneMonth:
-                setCurrentOverviewRange(stockRanges.oneMonth);
-                break;
-            case Range.sixMonths:
-                setCurrentOverviewRange(stockRanges.sixMonths);
-                break;
-            case Range.oneYear:
-                setCurrentOverviewRange(stockRanges.oneYear);
-                break;
-            default:
-                setCurrentOverviewRange(stockRanges.oneDay);
-        }
-    },[stockRanges])
+  useEffect(() => {
+    switch (selectedRange) {
+      case Range.oneDay:
+        setCurrentOverviewRange(stockRanges.oneDay);
+        break;
+      case Range.oneWeek:
+        setCurrentOverviewRange(stockRanges.oneWeek);
+        break;
+      case Range.oneMonth:
+        setCurrentOverviewRange(stockRanges.oneMonth);
+        break;
+      case Range.sixMonths:
+        setCurrentOverviewRange(stockRanges.sixMonths);
+        break;
+      case Range.oneYear:
+        setCurrentOverviewRange(stockRanges.oneYear);
+        break;
+      default:
+        setCurrentOverviewRange(stockRanges.oneDay);
+    }
+  }, [stockRanges]);
 
   async function getInitialStockData() {
     try {
       setLoading(true);
+      let daysTosubtract = 0;
       const currentDate: Date = new Date();
       const todaysDate = dayjs(currentDate);
-      const oneDayAgo = dayjs(currentDate).subtract(1, "day");
+      switch (todaysDate.day()) {
+        case 6:
+          daysTosubtract = 1;
+          break;
+        case 0:
+          daysTosubtract = 2;
+          break;
+        case 1:
+          daysTosubtract = 3;
+          break;
+        default:
+          daysTosubtract = 1;
+          break;
+      }
+      const oneDayAgo = dayjs(currentDate).subtract(daysTosubtract, "day");
       const startDate = oneDayAgo.format("MM-DD-YYYY");
       const endDate = todaysDate.format("MM-DD-YYYY");
       const stockData: Stock[] = await getStocks(startDate, endDate);
