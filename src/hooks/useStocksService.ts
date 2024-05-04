@@ -28,7 +28,6 @@ export default function useStocksService() {
   }, []);
 
     useEffect(() => {
-        console.log('rerender')
         switch (selectedRange) {
             case Range.oneDay:
                 setCurrentOverviewRange(stockRanges.oneDay);
